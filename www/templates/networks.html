@@ -1,0 +1,48 @@
+<ion-view view-title="nonbox" hide-back-button="true">
+	<ion-content>
+		<ion-refresher
+	    pulling-text="refresh list"
+	    on-refresh="scan()">
+	  </ion-refresher>
+		<h2 class="page-header">Wifi networks in range</h2>
+		<div ng-show="current.ssid == null" class="network-reset">
+			<p>Your nonbox network adapter was reset</p>
+			<button ng-click="scan()" type="submit" class="button button button-dark">
+        Refresh Network List
+      </button>
+		</div>
+		<ion-list ng-hide="current.ssid == null">
+			<!-- current -->
+			<ion-item class="current item-icon-left item-icon-right"
+			  ng-show="current.ssid">
+				<i class="icon ion-wifi"></i>
+				<h2 ng-bind="current.ssid"></h2>
+				<p ng-bind="current.security || 'Open'"></p>
+				<i class="icon-view ion-checkmark-round green"></i>
+				<ion-option-button on-tap="disconnect()">
+          <i class="icon ion-android-close"></i>
+        </ion-option-button>
+        <ion-option-button on-tap="reset()">
+          <i class="icon ion-android-refresh"></i>
+        </ion-option-button>
+			</ion-item>
+
+			<!-- available -->
+			<ion-item class="item-icon-left item-icon-right"
+				 ng-repeat="network in networks | orderBy: network.signal_strength"
+				 ng-class="{'open-network':!network.security}"
+				 on-tap="connect(network)"
+				 ng-hide="current.ssid == network.ssid">
+				<i class="icon ion-wifi"
+				   ng-style="{'color':colorStrength(network.signal_level)}"0>
+				</i>
+				<h2 ng-bind="network.ssid"></h2>
+				<p ng-bind="network.security || 'Open'"></span></p>
+				<span>
+					<i class="icon-view ion-ios-locked" ng-show="network.security"></i>
+					<i class="icon-view ion-ios-unlocked-outline" ng-hide="network.security"></i>
+				</span>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

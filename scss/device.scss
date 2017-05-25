@@ -1,0 +1,102 @@
+.view-profile {
+	& h3 {
+		text-align: center;
+		padding: 20px 0 15px 0;
+		border-bottom: 1px solid #ccc;
+		border-top: 1px solid #ccc;
+		background: $gray;
+		margin-top: 0;
+	}
+	.profile-bg {
+		.item {
+			background-color: $dark;
+			border:0;
+		}
+		.item-avatar {
+			min-height: 0;
+			padding: 0 0 16px 0;
+			text-align: center;
+			.circle {
+				background-color: $gray;
+				border-radius: 50%;
+				height: 110px;
+				width: 110px;
+				margin:5px auto 10px auto;
+				position: relative;
+				& .ion-wifi {
+					font-size: 30px;
+					position: absolute;
+					left: 42px;
+					top: 5px;
+				}
+				& .ion-android-checkbox-blank {
+					font-size: 80px;
+					position: absolute;
+					right: 25px;
+					bottom: 7px;
+				}
+				& .ion-checkmark-round, .ion-close-round {
+					font-size: 32px;
+			    color: green;
+			    position: absolute;
+			    left: 43px;
+			    bottom: 32px;
+				}
+				& .ion-close-round {
+					color: red!important;
+				}
+			}
+			h2 {
+				color: $light;
+				font-size:24px;
+			}
+			p {
+				color: #aaa;
+			}
+		}
+	}
+	.button-bar {
+		border-top: 1px solid #444;
+		.button {
+			background-color: $dark;
+			border: 0;
+			border-top: 1px solid #444;
+			border-right: 1px solid #444;
+			color: $light;
+			padding: 10px 16px;
+			&:first-child {
+				border-radius: 0;
+			}
+			&:last-child {
+				border-right:0;
+				border-radius: 0;
+			}
+			h2 {
+				color: $light;
+				font-size: 28px;
+				margin: 0;
+			}
+			p {
+				font-size: 12px;
+				line-height: 14px;
+				margin: 0;
+			}
+		}
+	}
+	.list {
+		margin: 0;
+		.item {
+			border-left: 0;
+			border-right: 0;
+			color: $dark;
+	    padding: 10px 20px;
+			&:first-child {
+				border-top: none;
+			}
+
+		}
+		.item-input {
+			padding: 6px 0;
+		}
+	}
+}

@@ -1,0 +1,38 @@
+<ion-view view-title="nonbox" hide-back-button="true">
+	<div ng-hide="showMode">
+		<ion-content>
+			<h2 class="page-header">Tutorials & Guides</h2>
+	    <!-- search filter -->
+			<div class="list list-inset input-search">
+				<label class="item item-input">
+					<i class="icon ion-search placeholder-icon"></i>
+					<input type="text" ng-model="search" placeholder="Filter tutorials">
+				</label>
+			</div>
+			<!-- tutorial list -->
+			<ion-list>
+				<ion-item class="item-icon-left"
+				  ng-repeat="tutorial in tutorials | filter:search"
+					on-tap="show(tutorial)">
+					<i class="icon ion-university"></i>
+					<h2 ng-bind="tutorial.title"></h2>
+					<p ng-bind="tutorial.description"></p>
+				</ion-item>
+			</ion-list>
+		</ion-content>
+	</div>
+
+	<div ng-show="showMode">
+		<div class="bar bar-subheader bar-dark">
+			<h2 class="title" on-tap="showMode=false">
+				<i class="ion-ios-arrow-left"></i>&nbsp;&nbsp;All Tutorials
+			</h2>
+		</div>
+		<ion-content padding="true" class="has-header has-subheader">
+		  <h2 ng-bind="tutorial.title"></h2>
+		  <p ng-bind="tutorial.description"></p>
+		</ion-content>
+	</div>
+</ion-view>
+
+<!-- on-tap="show(tutorial)" -->

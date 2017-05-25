@@ -1,0 +1,15 @@
+ion-content.support {
+  text-align:center;
+  & p {
+    font-size: 14px;
+    margin:25px;
+    color:#777;
+    & a:link {
+      text-decoration:none;
+    }
+    & .icon {
+      font-size: 52px;
+      color: $dark;
+    }
+  }
+}

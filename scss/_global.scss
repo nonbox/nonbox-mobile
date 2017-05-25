@@ -1,0 +1,41 @@
+.page-header {
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+  background:$dark;
+  color:$gray;
+  font-size:24px;
+}
+.page-subheader {
+  text-align:center;
+  background:$dark;
+  font-size:12px;
+  line-height: 12px;
+  margin: -10px 0 0 0;
+  padding: 0 15px 20px 15px;
+  color:#fff;
+}
+
+.bar-subheader .title {
+  text-align:left;
+}
+
+textarea {
+  height: 130px;
+  resize: none;
+}
+
+ion-content.contribute {
+  background:$dark;
+  text-align:center;
+  & .icon {
+    font-size:100px;
+    color:#fff;
+    line-height: 170px;
+  }
+}
+
+.network-reset {
+  text-align:center;
+  margin-top:100px;
+}

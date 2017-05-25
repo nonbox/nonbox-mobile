@@ -1,0 +1,26 @@
+<ion-view view-title="nonbox" hide-back-button="true">
+  <ion-content>
+    <h2 class="page-header">Suggest Idea</h2>
+    <p class="page-subheader">nonbox is in it's early stages. As we continue to develop products that advocate anonymity, security, and online privacy, your suggestions are more than welcome.</p>
+    <form ng-submit="submit(body)">
+      <div class="list">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Name</span>
+          <input type="text" ng-model="body.name" placeholder="Name (optional)">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Email</span>
+          <input type="email" ng-model="body.email" placeholder="Email (optional)">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Suggestion</span>
+          <textarea ng-model="body.message" required placeholder="What's your idea/suggestion?"></textarea>
+        </label>
+      </div>
+      <button type="submit" class="button button-full button-dark">
+        Submit Suggestion
+      </button>
+      <span class="icon icon-{{message.icon}} {{message.color}}"> {{message.text}}</span>
+    </form>
+  </ion-content>
+</ion-view>

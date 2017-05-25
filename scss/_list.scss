@@ -1,0 +1,26 @@
+/**
+ * Lists
+ * --------------------------------------------------
+ */
+
+.list {
+	.item {
+		border-color: #EDEDED;
+    & h2 {
+      color: $dark;
+    }
+	}
+}
+
+ion-item {
+	&.current {
+		border-top:none;
+		& .item-content {
+			background:$gray;
+			border-bottom:1px solid #ccc;
+		}
+	}
+}
+.connected {
+	right:0;
+}
