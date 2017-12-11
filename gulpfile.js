@@ -11,7 +11,8 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 var nonbox_modules = [
-  './node_modules/nonbox-client/nonbox-client.min.js'
+  './node_modules/nonbox-client/nonbox-client.min.js',
+  // '../nonbox-client/nonbox-client.min.js'
 ]
 
 gulp.task('default', ['sass', 'copy', 'watch']);
@@ -37,6 +38,10 @@ gulp.task('sass', function(done) {
 
 gulp.task('watch', ['sass'], function() {
   gulp.watch(paths.sass, ['sass']);
+});
+
+gulp.task('watch', ['copy'], function() {
+  gulp.watch(nonbox_modules, ['copy']);
 });
 
 gulp.task('install', ['git-check'], function() {

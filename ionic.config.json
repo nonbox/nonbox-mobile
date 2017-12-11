@@ -1,5 +1,14 @@
 {
   "name": "nonbox-mobile",
-  "app_id": "6b4a2123",
-  "type": "ionic1"
+  "app_id": "0979d6ae",
+  "type": "ionic1",
+  "integrations": {
+    "cordova": {}
+  },
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
 }
