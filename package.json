@@ -2,12 +2,17 @@
     "name": "nonbox-mobile",
     "version": "1.0.0",
     "description": "Mobile companion app for nonbox https://nonbox.co",
+    "scripts": {
+        "setup-ios": "ionic cordova platform add ios && cd platforms/ios/cordova && npm install ios-sim",
+        "ios": "ionic cordova emulate ios -lc"
+    },
     "dependencies": {
         "cordova-android": "^6.2.3",
-        "cordova-ios": "^4.5.4",
+        "cordova-ios": "^4.4.0",
         "cordova-plugin-add-swift-support": "^1.7.0",
         "cordova-plugin-console": "^1.1.0",
         "cordova-plugin-device": "^1.1.7",
+        "cordova-plugin-inappbrowser": "^1.7.2",
         "cordova-plugin-ionic": "^2.0.3",
         "cordova-plugin-splashscreen": "^4.1.0",
         "cordova-plugin-statusbar": "^2.3.0",
@@ -18,6 +23,7 @@
         "gulp-rename": "^1.2.0",
         "gulp-sass": "^2.0.4",
         "ionic-plugin-keyboard": "^2.2.1",
+        "ng-cordova": "^0.1.27-alpha",
         "nonbox-client": "^1.0.0"
     },
     "devDependencies": {
@@ -54,7 +60,8 @@
                 "UPDATE_METHOD": "background",
                 "UPDATE_API": "https://api.ionicjs.com",
                 "MAX_STORE": "2"
-            }
+            },
+            "cordova-plugin-inappbrowser": {}
         },
         "platforms": [
             "android",

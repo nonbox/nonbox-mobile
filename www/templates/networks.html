@@ -7,7 +7,7 @@
 		<h2 class="page-header">Wifi networks in range</h2>
 		<div ng-show="current.ssid == null" class="network-reset">
 			<p>Your nonbox network adapter was reset</p>
-			<button ng-click="scan()" type="submit" class="button button button-dark">
+			<button on-tap="scan()" type="submit" class="button button button-dark">
         Refresh Network List
       </button>
 		</div>

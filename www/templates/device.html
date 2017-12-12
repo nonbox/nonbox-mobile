@@ -10,18 +10,17 @@
 					<div class="circle">
 						<i class="icon ion-wifi"></i>
 						<i class="icon ion-android-checkbox-blank"></i>
-						<i ng-show="online" class="icon ion-checkmark-round"></i>
-						<i ng-hide="online" class="icon ion-close-round"></i>
+						<i ng-show="nbConnected" class="icon ion-checkmark-round"></i>
+						<i ng-hide="nbConnected" class="icon ion-close-round"></i>
 					</div>
-					<h2>Connected to nonbox</h2>
-					<p>{{assigned.total}} devices connected, {{assigned.remaining}} available slots left</p>
+					<h2><span ng-hide="nbConnected">not </span>connected</h2>
+					<p ng-show="nbConnected">{{info.assigned.total}} devices connected, {{info.assigned.remaining}} available slots left</p>
 				</a>
 			</div>
-			<!-- button bar with style FOLLOWER / FOLLOWING -->
 			<div class="button-bar">
 				<a class="button">
 					<h2 class="ion-battery-charging"></h2>
-					<p ng-show="nbConnected">50%</p>
+					<p ng-bind="info.battery"></p>
 				</a>
 				<a class="button">
 					<h2 class="ion-wifi"></h2>
@@ -30,25 +29,15 @@
 				</a>
 				<a class="button">
 					<h2 class="ion-ios-information"></h2>
-					<p ng-show="nbConnected">v1.0.1</p>
+					<p ng-bind="info.version"></p>
 				</a>
 			</div>
 			<h3>Connected Devices</h3>
-			<ion-list ng-show="nbConnected">
-				<ion-item>
-					<h2>Some Device</h2>
-					<p>00:0a:95:9d:68:16</p>
-					<i class="icon-view ion-ios-close"></i>
-				</ion-item>
-				<ion-item>
-					<h2>Some Device</h2>
-					<p>00:0a:95:9d:68:16</p>
-					<i class="icon-view ion-ios-close"></i>
-				</ion-item>
-				<ion-item>
-					<h2>Some Device</h2>
-					<p>00:0a:95:9d:68:16</p>
-					<i class="icon-view ion-ios-close"></i>
+			<ion-list>
+				<ion-item ng-repeat="device in info.devices">
+					<h2 ng-bind="device.name"></h2>
+					<p ng-bind="device.mac"></p>
+					<i on-tap="removeDevice(device, $index)" class="icon-view ion-ios-close"></i>
 				</ion-item>
 			</ion-list>
 		</div>

@@ -9835,6 +9835,13 @@ ion-content.contribute {
   text-align: center;
   margin-top: 100px; }
 
+p.small {
+  font-size: 10px; }
+
+input.ng-invalid {
+  border-color: red;
+  color: red !important; }
+
 /**
  * Bar
  * --------------------------------------------------

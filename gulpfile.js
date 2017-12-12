@@ -10,16 +10,17 @@ var sh = require('shelljs');
 var paths = {
   sass: ['./scss/**/*.scss']
 };
-var nonbox_modules = [
-  './node_modules/nonbox-client/nonbox-client.min.js',
+var dependencies = [
+  './node_modules/ng-cordova/dist/ng-cordova.min.js',
+  './node_modules/nonbox-client/nonbox-client.min.js'
   // '../nonbox-client/nonbox-client.min.js'
 ]
 
 gulp.task('default', ['sass', 'copy', 'watch']);
 
 gulp.task('copy', function (done) {
-  gulp.src(nonbox_modules)
-    .pipe(gulp.dest('./www/lib/nonbox'))
+  gulp.src(dependencies)
+    .pipe(gulp.dest('./www/lib/dependencies'))
     .on('end', done);
 });
 
@@ -41,7 +42,7 @@ gulp.task('watch', ['sass'], function() {
 });
 
 gulp.task('watch', ['copy'], function() {
-  gulp.watch(nonbox_modules, ['copy']);
+  gulp.watch(dependencies, ['copy']);
 });
 
 gulp.task('install', ['git-check'], function() {

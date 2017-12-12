@@ -31,6 +31,13 @@
 		<ion-content padding="true" class="has-header has-subheader">
 		  <h2 ng-bind="tutorial.title"></h2>
 		  <p ng-bind="tutorial.description"></p>
+      <ion-list>
+				<ion-item class="item-icon-left item-text-wrap" ng-repeat="step in tutorial.steps">
+          <i class="icon" ng-bind="step.order"></i>
+          <p ng-bind="step.text">Back off, man. I'm a scientist.</p>
+          <img ng-src="{{step.image}}" />
+				</ion-item>
+			</ion-list>
 		</ion-content>
 	</div>
 </ion-view>

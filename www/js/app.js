@@ -1,8 +1,8 @@
 const templateDir = 'templates';
 
-angular.module('nonbox-mobile', ['ionic', 'nonbox-client'])
+angular.module('nonbox-mobile', ['ionic', 'ngCordova', 'nonbox-client'])
 
-.run(function($ionicPlatform, $state, $rootScope, $ionicLoading) {
+.run(function($ionicPlatform, $state, $rootScope, $ionicLoading, $cordovaInAppBrowser, $timeout) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -10,26 +10,46 @@ angular.module('nonbox-mobile', ['ionic', 'nonbox-client'])
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       // cordova.plugins.Keyboard.disableScroll(true);
     }
+    ionic.Platform.fullScreen();
     if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      // StatusBar.styleDefault();
+      StatusBar.hide();
+    }
+    // external link references (open in browser)
+    $rootScope.exref = function(url){
+      $cordovaInAppBrowser.open(url, '_system', {
+        location: 'yes'
+      })
     }
   });
+  // internal state reference (via ng-click)
+  $rootScope.sref = $state.go.bind($state);
 
   $rootScope.$on('loading:start', function (){
     $ionicLoading.show({
-      template: '<p>Connecting</p><ion-spinner></ion-spinner>'
+      template: '<ion-spinner></ion-spinner>'
     });
+  });
+  $rootScope.$on('nonbox:notfound', function (){
+    $ionicLoading.show({
+      template: "<p>No nonbox not found!</p><p class='small'>make sure it's powered<br>on and in range :)</p>"
+    });
+    $timeout(function(){ $ionicLoading.hide(); }, 3000);
+  });
+  $rootScope.$on('device:remove', function (){
+    $ionicLoading.show({
+      template: '<p>Removing device</p><ion-spinner></ion-spinner>'
+    });
+  });
+  $rootScope.$on('device:removed', function (){
+    $ionicLoading.show({
+      template: '<p>Device removed</p><ion-spinner></ion-spinner>'
+    });
+    $timeout(function(){ $ionicLoading.hide(); }, 1000);
   });
   $rootScope.$on('loading:finish', function (){
     $ionicLoading.hide();
   });
-
-  // internal state reference (via ng-click)
-  $rootScope.sref = $state.go.bind($state);
-
-  // external link references (open in browser)
-  // TODO
 })
 
 .config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider, $ionicConfigProvider) {
