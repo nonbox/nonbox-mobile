@@ -1,0 +1,38 @@
+<ion-modal-view class="view-login">
+  <ion-content ng-init="device = null">
+    <h2 class="page-header">Add Device</h2>
+    <p class="page-subheader">Make sure you are connected to the "nonbox" wifi network</p>
+    <br>
+    <form ng-submit="saveDevice(device); device = {}">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text"
+            placeholder="nonbox serial number"
+            ng-model="device.serial"
+            required
+            ng-keypress="preventSpace($event)"
+            autofocus autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false">
+        </label>
+        <label class="item item-input">
+          <input type="text"
+            placeholder="name this device"
+            ng-model="device.name"
+            required
+            autofocus autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false">
+        </label>
+        <button class="button button-block button-dark">
+          SAVE
+        </button>
+        <a class="button button-block button-light" ng-click="modal.hide(); device = {}">
+          CANCEL
+        </a>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

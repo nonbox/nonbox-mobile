@@ -12,8 +12,8 @@ var paths = {
 };
 var dependencies = [
   './node_modules/ng-cordova/dist/ng-cordova.min.js',
-  './node_modules/nonbox-client/nonbox-client.min.js'
-  // '../nonbox-client/nonbox-client.min.js'
+  // './node_modules/nonbox-client/nonbox-client.min.js'
+  '../nonbox-client/nonbox-client.min.js'
 ]
 
 gulp.task('default', ['sass', 'copy', 'watch']);

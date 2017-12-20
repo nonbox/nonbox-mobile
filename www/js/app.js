@@ -1,15 +1,23 @@
 const templateDir = 'templates';
+var db;
 
 angular.module('nonbox-mobile', ['ionic', 'ngCordova', 'nonbox-client'])
 
-.run(function($ionicPlatform, $state, $rootScope, $ionicLoading, $cordovaInAppBrowser, $timeout) {
+.run(function($ionicPlatform, $state, $rootScope, $ionicModal, $ionicLoading, $cordovaSQLite, $cordovaInAppBrowser, $timeout) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      // cordova.plugins.Keyboard.disableScroll(true);
+    if (window.cordova) {
+      if(window.cordova.plugins && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        // cordova.plugins.Keyboard.disableScroll(true);
+      }
+      db = $cordovaSQLite.openDB({name: 'nonbox.db', location: 'default'});
+    } else {
+      db = $window.sqlitePlugin.openDatabase({name: 'nonbox.db', location: 'default'});
     }
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS devices (id integer primary key, serial text, name text, hostname text)");
+
     ionic.Platform.fullScreen();
     if (window.StatusBar) {
       // StatusBar.styleDefault();

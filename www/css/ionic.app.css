@@ -9838,7 +9838,7 @@ ion-content.contribute {
 p.small {
   font-size: 10px; }
 
-input.ng-invalid {
+input.ng-invalid-email {
   border-color: red;
   color: red !important; }
 
@@ -10225,6 +10225,12 @@ input[type="color"] {
       border-top: none; }
   .view-profile .list .item-input {
     padding: 6px 0; }
+
+.add-device.logo {
+  width: 200px;
+  margin: 20px auto; }
+  .add-device.logo img {
+    width: 100% !important; }
 
 ion-content.support {
   text-align: center; }
