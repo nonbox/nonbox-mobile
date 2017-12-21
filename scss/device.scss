@@ -110,13 +110,35 @@
 }
 
 ion-view.devices {
-  background:#eee!important;
+  background:#222!important;
   & .card {
     & .item-divider {
       border-top:none;
     }
-    & h2 {
-      color:$dark;
+    & .item-text-wrap.dark {
+      // background-color:#aaa;
+      // color:#fff!important;
+      // & h2 {
+      //   color:$dark;
+      // }
+      // & p {
+      //   color:#555;
+      // }
+    }
+    & .item-text-wrap {
+      & h2 {
+        color:$dark;
+      }
+      & p.open {
+        border-bottom:1px solid #ccc;
+        padding-bottom:10px;
+        margin-bottom:15px;
+        & i {
+          font-size:20px;
+          position:relative;
+          top:3px;
+        }
+      }
     }
     & button {
       border-width:0px!important;

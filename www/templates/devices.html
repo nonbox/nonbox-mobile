@@ -10,7 +10,13 @@
       on-refresh="listDevices()">
     </ion-refresher>
     <div class="card" ng-repeat="device in devices">
-      <div class="item item-text-wrap" ui-sref="device({serial: device.serial})">
+      <div class="item item-text-wrap" ng-hide="currentDevice.serial === device.serial">
+        <h2 ng-bind="device.name"></h2>
+        <p ng-bind="device.serial"></p>
+      </div>
+      <div class="item item-text-wrap dark" ng-show="currentDevice.serial === device.serial"
+        ui-sref="device({serial: device.serial})">
+        <p class="open"><i class="ion-eye"></i>&nbsp; tap to view device</p>
         <h2 ng-bind="device.name"></h2>
         <p ng-bind="device.serial"></p>
       </div>
