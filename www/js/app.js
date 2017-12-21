@@ -1,9 +1,9 @@
 const templateDir = 'templates';
-var db;
+var db, allowed;
 
 angular.module('nonbox-mobile', ['ionic', 'ngCordova', 'nonbox-client'])
 
-.run(function($ionicPlatform, $state, $rootScope, $ionicModal, $ionicLoading, $cordovaSQLite, $cordovaInAppBrowser, $timeout) {
+.run(function($ionicPlatform, $state, $urlRouter, $rootScope, $ionicModal, $ionicLoading, $cordovaSQLite, $cordovaInAppBrowser, $timeout, Device) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -17,6 +17,7 @@ angular.module('nonbox-mobile', ['ionic', 'ngCordova', 'nonbox-client'])
       db = $window.sqlitePlugin.openDatabase({name: 'nonbox.db', location: 'default'});
     }
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS devices (id integer primary key, serial text, name text, hostname text)");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS current (id integer primary key, payload text)");
 
     ionic.Platform.fullScreen();
     if (window.StatusBar) {
@@ -27,6 +28,27 @@ angular.module('nonbox-mobile', ['ionic', 'ngCordova', 'nonbox-client'])
     $rootScope.exref = function(url){
       $cordovaInAppBrowser.open(url, '_system', {
         location: 'yes'
+      })
+    }
+    Device.getCurrent()
+  });
+
+  // get current device before transitioning to another state
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+    var skipCheck = false;
+    skipCheck = ($rootScope.currentDevice && $rootScope.nbConnected ? true : false)
+    allowed   = ['devices', 'device', 'quickstart', 'tutorials', 'support', 'bugs', 'suggestions', 'pr']
+    if(allowed.indexOf(toState.name) > -1 || skipCheck){
+      return;
+    } else {
+      event.preventDefault()
+      Device.getCurrent().then(function(resp){
+        skipCheck = true;
+        if(resp && $rootScope.nbConnected){
+          $state.go(toState.name, toParams)
+        } else {
+          $state.go('devices')
+        }
       })
     }
   });
@@ -65,4 +87,13 @@ angular.module('nonbox-mobile', ['ionic', 'ngCordova', 'nonbox-client'])
     'self', '*://nonbox.co/**', '*://192.168.42.1:8080/**'
   ]);
   $ionicConfigProvider.navBar.alignTitle('center');
+  $ionicConfigProvider.backButton.text('').previousTitleText(false);
+
+  // $stateProvider.state('wipe', {
+  //   url: '/wipe',
+  //   templateProvider: function($cordovaSQLite){
+  //     $cordovaSQLite.deleteDB({name: 'nonbox.db',  location: 'default'})
+  //     $cordovaSQLite.deleteDB({name: 'current.db', location: 'default'})
+  //   }
+  // })
 });

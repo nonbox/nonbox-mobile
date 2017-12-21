@@ -41,7 +41,7 @@ angular.module('nonbox-mobile')
   return self;
 })
 
-.factory('Device', function($cordovaSQLite, Database) {
+.factory('Device', function($cordovaSQLite, Database, $rootScope) {
   var self = this;
 
   self.all = function() {
@@ -82,10 +82,42 @@ angular.module('nonbox-mobile')
     });
   }
   self.remove = function(device) {
-    return Database.query("DELETE FROM devices WHERE serial = (?)", [device.serial]);
+    if(device.serial === $rootScope.currentDevice.serial){
+      $rootScope.currentDevice = null;
+    }
+    Database.query("DELETE FROM devices WHERE serial = (?)", [device.serial]);
+    Database.query("DELETE FROM current", []);
+    return;
   }
   self.removeAll = function() {
     return Database.query("DELETE FROM devices", []);
+  }
+  self.setCurrent = function(device) {
+    return Database.query("SELECT * FROM current WHERE id = (?)", [1])
+    .then(function(result){
+      $rootScope.currentDevice = device;
+      if(result.rows.length === 0){
+        return Database.query("INSERT INTO current (id, payload) VALUES (?, ?)", [1, JSON.stringify(device)]);
+      } else {
+        return Database.query("UPDATE current SET serial = (?) WHERE id = (?)", [device.serial, 1]);
+      }
+    }).catch(function(err){
+      console.log(JSON.stringify(err));
+    });
+  }
+  self.getCurrent = function(){
+    return Database.query("SELECT * FROM current WHERE id = (?)", [1])
+    .then(function(result){
+      if(result.rows.length > 0){
+        $rootScope.currentDevice = JSON.parse(Database.getById(result).payload);
+        return true;
+      } else {
+        return false;
+      }
+    }).catch(function(err){
+      console.log(JSON.stringify(err));
+      return false;
+    });
   }
   return self;
 });

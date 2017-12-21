@@ -108,3 +108,22 @@
 		width:100%!important;
 	}
 }
+
+ion-view.devices {
+  background:#eee!important;
+  & .card {
+    & .item-divider {
+      border-top:none;
+    }
+    & h2 {
+      color:$dark;
+    }
+    & button {
+      border-width:0px!important;
+      &:focus, &:active, &:visited, &:hover {
+        background:transparent!important;
+        color:initial!important;
+      }
+    }
+  }
+}

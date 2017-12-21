@@ -10232,6 +10232,18 @@ input[type="color"] {
   .add-device.logo img {
     width: 100% !important; }
 
+ion-view.devices {
+  background: #eee !important; }
+  ion-view.devices .card .item-divider {
+    border-top: none; }
+  ion-view.devices .card h2 {
+    color: #212121; }
+  ion-view.devices .card button {
+    border-width: 0px !important; }
+    ion-view.devices .card button:focus, ion-view.devices .card button:active, ion-view.devices .card button:visited, ion-view.devices .card button:hover {
+      background: transparent !important;
+      color: initial !important; }
+
 ion-content.support {
   text-align: center; }
   ion-content.support p {

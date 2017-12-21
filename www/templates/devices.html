@@ -1,20 +1,32 @@
-<ion-view view-title="nonbox" hide-back-button="true">
+<ion-view view-title="nonbox" hide-back-button="true" class="devices">
   <ion-nav-buttons side="right">
     <button class="button button-icon ion-ios-plus-empty" on-tap="modal.show(); device = {}"></button>
   </ion-nav-buttons>
 	<ion-content>
+    <h2 class="page-header">Select a device to control</h2>
+    <p class="page-subheader" ng-show="currentDevice">currently controlling <strong>{{currentDevice.name}}</strong></p>
     <ion-refresher
       pulling-text="refresh list"
       on-refresh="listDevices()">
     </ion-refresher>
-		<ion-list>
-			<ion-item ng-repeat="device in devices">
-        <div ui-sref="device">
-  				<h2 ng-bind="device.name"></h2>
-  				<p ng-bind="device.serial"></p>
-        </div>
-				<i on-tap="removeDevice(device)" class="icon-view ion-trash-b"></i>
-			</ion-item>
-		</ion-list>
+    <div class="card" ng-repeat="device in devices">
+      <div class="item item-text-wrap" ui-sref="device({serial: device.serial})">
+        <h2 ng-bind="device.name"></h2>
+        <p ng-bind="device.serial"></p>
+      </div>
+      <div class="item item-divider row">
+        <span align="left" class="col col-50">
+          <button on-tap="setCurrent(device)" class="button button-small button-outline" ng-class="currentDevice.serial === device.serial ? 'button-dark' : 'button-stable'">
+            &nbsp;CONTROL&nbsp;&nbsp;<i ng-class="currentDevice.serial === device.serial ? 'ion-record' : 'ion-android-radio-button-off'"></i>&nbsp;
+          </button>
+        </span>
+        <span align="right" class="col col-50">
+          <button on-tap="removeDevice(device)" class="button button-small button-assertive button-outline">
+            &nbsp;REMOVE&nbsp;&nbsp;<i class="ion-close-round"></i>&nbsp;
+          </button>
+        </span>
+      </div>
+    </div>
+    <!-- <div ui-sref="wipe">wipe databases</div> -->
 	</ion-content>
 </ion-view>

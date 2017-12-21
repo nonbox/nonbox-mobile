@@ -5,6 +5,7 @@
 	    on-refresh="scan()">
 	  </ion-refresher>
 		<h2 class="page-header">Wifi networks in range</h2>
+    <p class="page-subheader" ng-show="currentDevice">connect <strong>{{currentDevice.name}}</strong> to wifi</p>
 		<div ng-show="current.ssid == null" class="network-reset">
 			<p>Your nonbox network adapter was reset</p>
 			<button on-tap="scan()" type="submit" class="button button button-dark">

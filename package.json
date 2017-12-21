@@ -4,13 +4,12 @@
     "description": "Mobile companion app for nonbox https://nonbox.co",
     "scripts": {
         "setup-ios": "ionic cordova platform add ios && cd platforms/ios/cordova && npm install ios-sim",
-        "ios": "ionic cordova emulate ios -lc"
+        "ios": "ionic cordova emulate ios --target iPhone-7 -lc"
     },
     "dependencies": {
         "cordova-android": "^6.2.3",
-        "cordova-ios": "^4.4.0",
+        "cordova-ios": "^4.5.0",
         "cordova-plugin-add-swift-support": "^1.7.0",
-        "cordova-plugin-console": "^1.1.0",
         "cordova-plugin-device": "^1.1.7",
         "cordova-plugin-inappbrowser": "^1.7.2",
         "cordova-plugin-ionic": "^2.0.3",
@@ -49,7 +48,6 @@
     },
     "cordova": {
         "plugins": {
-            "cordova-plugin-console": {},
             "cordova-plugin-device": {},
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
