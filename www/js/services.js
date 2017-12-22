@@ -82,7 +82,7 @@ angular.module('nonbox-mobile')
     });
   }
   self.remove = function(device) {
-    if(device.serial === $rootScope.currentDevice.serial){
+    if($rootScope.currentDevice && device.serial === $rootScope.currentDevice.serial){
       $rootScope.currentDevice = null;
     }
     Database.query("DELETE FROM devices WHERE serial = (?)", [device.serial]);
@@ -99,7 +99,7 @@ angular.module('nonbox-mobile')
       if(result.rows.length === 0){
         return Database.query("INSERT INTO current (id, payload) VALUES (?, ?)", [1, JSON.stringify(device)]);
       } else {
-        return Database.query("UPDATE current SET serial = (?) WHERE id = (?)", [device.serial, 1]);
+        return Database.query("UPDATE current SET payload = (?) WHERE id = (?)", [JSON.stringify(device), 1]);
       }
     }).catch(function(err){
       console.log(JSON.stringify(err));

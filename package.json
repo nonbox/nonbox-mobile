@@ -31,7 +31,7 @@
         "gulp-rename": "^1.2.0",
         "gulp-sass": "^2.0.4",
         "ng-cordova": "^0.1.27-alpha",
-        "nonbox-client": "^1.0.1"
+        "nonbox-client": "^1.0.2"
     },
     "repository": {
         "type": "git",

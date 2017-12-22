@@ -10,6 +10,7 @@
 				</label>
 			</div>
 			<!-- tutorial list -->
+      <h4 class="no-tutorials" ng-show="tutorials.length==0">No tutorials yet, stay tuned :)</h4>
 			<ion-list>
 				<ion-item class="item-icon-left"
 				  ng-repeat="tutorial in tutorials | filter:search"
@@ -34,7 +35,7 @@
       <ion-list>
 				<ion-item class="item-icon-left item-text-wrap" ng-repeat="step in tutorial.steps">
           <i class="icon" ng-bind="step.order"></i>
-          <p ng-bind="step.text">Back off, man. I'm a scientist.</p>
+          <p ng-bind="step.text"></p>
           <img ng-src="{{step.image}}" />
 				</ion-item>
 			</ion-list>

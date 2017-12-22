@@ -6,7 +6,7 @@
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="*://*nonbox.io/*" />
-    <allow-navigation href="http://192.168.29.213:8100" />
+    <allow-navigation href="http://192.168.42.1:8080/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -94,8 +94,7 @@
         <variable name="MAX_STORE" value="2" />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
-    <allow-navigation href="http://172.31.98.25:8100" />
     <plugin name="cordova-sqlite-storage" spec="^2.1.4" />
-    <allow-navigation href="http://172.31.98.26:8100" />
     <engine name="ios" spec="~4.5.0" />
+    <allow-navigation href="http://172.31.98.26:8100" />
 </widget>

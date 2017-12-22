@@ -10263,3 +10263,8 @@ ion-content.support {
     ion-content.support p .icon {
       font-size: 52px;
       color: #212121; }
+
+.no-tutorials {
+  margin: 30px auto;
+  text-align: center;
+  color: #777; }

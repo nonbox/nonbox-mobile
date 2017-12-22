@@ -36,7 +36,7 @@ angular.module('nonbox-mobile', ['ionic', 'ngCordova', 'nonbox-client'])
   // get current device before transitioning to another state
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
     var skipCheck = false;
-    skipCheck = ($rootScope.currentDevice && $rootScope.nbConnected ? true : false)
+    skipCheck = (($rootScope.currentDevice && $rootScope.nbConnected) ? true : false)
     allowed   = ['devices', 'device', 'quickstart', 'tutorials', 'support', 'bugs', 'suggestions', 'pr']
     if(allowed.indexOf(toState.name) > -1 || skipCheck){
       return;
@@ -82,10 +82,7 @@ angular.module('nonbox-mobile', ['ionic', 'ngCordova', 'nonbox-client'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider, $ionicConfigProvider) {
-  $sceDelegateProvider.resourceUrlWhitelist([
-    'self', '*://nonbox.co/**', '*://192.168.42.1:8080/**'
-  ]);
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $ionicConfigProvider.navBar.alignTitle('center');
   $ionicConfigProvider.backButton.text('').previousTitleText(false);
 
