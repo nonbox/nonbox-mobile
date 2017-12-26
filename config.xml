@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.nonbox.companion" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.nonbox.companion" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>nonbox</name>
     <description>nonbox companion app</description>
     <author email="help@nonbox.co" href="https://nonbox.co/">nonbox, Inc.</author>
@@ -80,21 +80,22 @@
         <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
+    <allow-navigation href="http://172.31.98.26:8100" />
+    <allow-navigation href="http://192.168.29.213:8100" />
     <engine name="android" spec="^6.2.3" />
-    <plugin name="cordova-plugin-device" spec="^1.1.4" />
-    <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.2.1" />
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
+    <engine name="ios" spec="~4.5.4" />
+    <plugin name="cordova-plugin-device" spec="^1.1.7" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <plugin name="cordova-plugin-ionic" spec="~2.0.3">
+    <plugin name="cordova-plugin-ionic" spec="^2.0.3">
         <variable name="APP_ID" value="0979d6ae" />
-        <variable name="CHANNEL_NAME" value="Production" />
-        <variable name="UPDATE_METHOD" value="auto" />
+        <variable name="CHANNEL_NAME" value="Master" />
+        <variable name="UPDATE_METHOD" value="background" />
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MAX_STORE" value="2" />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="cordova-sqlite-storage" spec="^2.1.4" />
-    <engine name="ios" spec="~4.5.0" />
-    <allow-navigation href="http://172.31.98.26:8100" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.0" />
 </widget>
