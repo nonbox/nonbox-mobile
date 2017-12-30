@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Mobile companion app for nonbox https://nonbox.co",
   "scripts": {
-    "setup-ios": "ionic cordova platform remove ios && ionic cordova platform add ios && cd platforms/ios/cordova && npm install ios-sim",
-    "ios": "ionic cordova emulate ios --target iPhone-7 -lc"
+    "ios": "ionic cordova emulate ios --target iPhone-7 -lc",
+    "ios:setup": "ionic cordova platform remove ios && ionic cordova platform add ios && cd platforms/ios/cordova && npm install ios-sim",
+    "android": "",
+    "android:sign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore nonbox-release-key.keystore platforms/android/build/outputs/apk/release/android-release-unsigned.apk nonbox",
+    "android:optimize": "zipalign -v 4 platforms/android/build/outputs/apk/release/android-release-unsigned.apk nonbox.apk"
   },
   "dependencies": {
     "cordova-android": "^6.2.3",
